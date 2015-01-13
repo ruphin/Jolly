@@ -13,6 +13,4 @@ Gem::Specification.new do |s|
   s.license     = 'MIT'
 
   s.files       = ['lib/jolly.rb', 'lib/jolly/api.rb']
-
-  s.add_runtime_dependency 'activesupport'
 end

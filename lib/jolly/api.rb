@@ -1,9 +1,8 @@
 module Jolly
   module API
-    def create(module_name, &definition)
-      factory = Jolly::ModuleFactory.new(module_name)
-      factory.__populate__(&definition)
-      factory.__compile__
+    def self.create(module_name, &definition)
+      build_context = Jolly::Runtime::Context.new(module_name)
+      build_context.__compile__(&definition)
     end
   end
 end
