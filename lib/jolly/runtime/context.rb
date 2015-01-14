@@ -1,7 +1,7 @@
 module Jolly
   module Runtime
     class Context
-      include Jolly::DSL
+      include Jolly::Parser::DSL
 
       def initialize(module_name)
         module_chain = module_name.split('::')

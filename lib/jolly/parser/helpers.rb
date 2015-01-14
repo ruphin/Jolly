@@ -4,7 +4,7 @@ module Jolly
       def __open_description(name)
         puts "Opening #{name} method description"
         if (@config[:methods] ||= {}).key?(name)
-          raise Jolly::DSL::NameException, "There already exists a '#{name}' method in this API"
+          raise Jolly::Exceptions::InvalidName, "There already exists a '#{name}' method in this API"
         end
         @current = { name: name }
       end

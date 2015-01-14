@@ -8,7 +8,7 @@ module Jolly
 
       def authentication_override(&block)
         if @current
-          raise Jolly::DSL::FormatException, 'Place Autentication overrides before descriptions'
+          raise Jolly::Exceptions::InvalidFormat, 'Place Autentication overrides before descriptions'
         end
         overrides = @config[:authentication_overrides] ||= []
         overrides.push(block)
