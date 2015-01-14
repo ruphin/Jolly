@@ -1,5 +1,5 @@
 module Jolly
-  require_relative 'jolly/dsl/api'
+  require_relative 'jolly/parser/dsl'
 
   require_relative 'jolly/api'
   require_relative 'jolly/runtime/context'
