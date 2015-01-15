@@ -2,7 +2,6 @@ module Jolly
   module Parser
     module Describe
       def describe(name, description = nil)
-        puts "Opening #{name} method description"
         if (@config[:methods] ||= {}).key?(name)
           raise Jolly::Exceptions::InvalidName, "There already exists a '#{name}' method in this API"
         end

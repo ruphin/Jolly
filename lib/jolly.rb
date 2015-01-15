@@ -13,6 +13,9 @@ module Jolly
   module Exceptions
     autoload :InvalidName,    'jolly/exceptions/invalid_name'
     autoload :InvalidFormat,  'jolly/exceptions/invalid_format'
+    module Runtime
+      autoload :Parameter,      'jolly/exceptions/runtime/parameter'
+    end
   end
 
   module Runtime

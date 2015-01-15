@@ -1,7 +1,12 @@
 module Jolly
   module Runtime
-    class Scope < BasicObject
-      def method_missing
+    class Scope
+      def __eigenclass
+        class << self
+          self
+        end
+      end
+      def method_missing(m,*a,&b)
         return nil
       end
     end

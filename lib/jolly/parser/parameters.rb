@@ -4,7 +4,7 @@ require 'active_support/core_ext/string/inflections'
 module Jolly
   module Parser
     module Parameters
-      def param(name, type, properties)
+      def param(name, type, properties = {})
         parameters = @current[:parameters] ||= {}
 
         if parameters.key?(name)
