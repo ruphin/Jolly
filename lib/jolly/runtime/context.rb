@@ -26,9 +26,6 @@ module Jolly
         # It will build a reference target for the Jolly API in @config
         instance_eval(&definition)
 
-        # Close the last method description in the definition
-        __close_description
-
         puts '== Configuration complete =='
         puts @config
 
@@ -43,8 +40,25 @@ module Jolly
           end
         end
 
+        # TODO: The perform methods need to be wrapped so they are instance_evalled on scope?
+        # Define the perform_methods on the proxy
+        @config.each do |method, definition|
+          proxy.__eigenclass.send(:define_method, "perform_#{method}", &definition[:perform])
+        end
+
         # Compile @config into module methods and proxy methods
-        puts proxy
+        proxy.__eigenclass.class_eval do
+          def parse_params_derp(scope, params)
+            params.map do |param|
+              # This should not map, it should define the parameters on the scope immediately.
+              if @config[:derp][:parameters].keys.include? param
+                next Jolly::Runtime::Coercers.coerce(param, @config[:derp][:parameters][param][:type])
+              else
+                raise Jolly::Exception::ParameterException, "Parameter #{param} is not allowed on derp"
+              end
+            end
+          end
+        end
       end
     end
   end
