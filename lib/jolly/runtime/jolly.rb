@@ -1,6 +1,6 @@
 module Jolly
   module Runtime
-    class Proxy
+    class Jolly
       def __eigenclass
         class << self
           self
