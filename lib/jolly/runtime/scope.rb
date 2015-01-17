@@ -6,8 +6,9 @@ module Jolly
           self
         end
       end
-      def method_missing(m,*a,&b)
-        return nil
+
+      def method_missing(*)
+        nil
       end
     end
   end

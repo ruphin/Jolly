@@ -1,8 +1,12 @@
+AllCops:
+  Exclude:
+    - 'test.rb'
+
 Documentation:
   Enabled: false
 
 Metrics/LineLength:
-  Max: 100
+  Max: 120
 
 Metrics/MethodLength:
   Max: 20

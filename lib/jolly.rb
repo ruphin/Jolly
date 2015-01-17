@@ -1,5 +1,8 @@
 module Jolly
+  autoload :Parser,           'jolly/parser'
+
   module Parser
+    autoload :Context,        'jolly/parser/context'
     autoload :Helpers,        'jolly/parser/helpers'
     autoload :Describe,       'jolly/parser/describe'
     autoload :Return,         'jolly/parser/return'
@@ -13,15 +16,24 @@ module Jolly
   module Exceptions
     autoload :InvalidName,    'jolly/exceptions/invalid_name'
     autoload :InvalidFormat,  'jolly/exceptions/invalid_format'
+
     module Runtime
-      autoload :Parameter,      'jolly/exceptions/runtime/parameter'
+      autoload :Parameter,    'jolly/exceptions/runtime/parameter'
     end
+  end
+
+  autoload :Compiler,         'jolly/compiler'
+
+  module Compiler
+    autoload :Perform,        'jolly/compiler/perform'
+    autoload :Parameters,     'jolly/compiler/parameters'
+    autoload :API,            'jolly/compiler/api'
   end
 
   module Runtime
     autoload :Context,        'jolly/runtime/context'
     autoload :Scope,          'jolly/runtime/scope'
-    autoload :Proxy,          'jolly/runtime/proxy'
+    autoload :Jolly,          'jolly/runtime/jolly'
   end
 
   autoload :API,              'jolly/api'

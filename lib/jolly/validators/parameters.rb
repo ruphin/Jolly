@@ -1,7 +1,7 @@
 module Jolly
   module Validators
-    module ReturnType
-      def self.valid(_value, _type)
+    module Parameters
+      def self.valid(_parameters, _rules)
         true
       end
     end

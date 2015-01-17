@@ -41,7 +41,7 @@ module Jolly
 
       def __parameter_condition(condition, params)
         parameters = @current[:parameters] ||= {}
-        conditions = @config[:parameter_conditions] ||= []
+        conditions = @config[:conditions] ||= []
         param_list = params.map do |param|
           list = [param]
           list.push parameters[param][:multiple] if parameters[param].key?(:multiple)
