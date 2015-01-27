@@ -3,7 +3,7 @@ module Jolly
     module API
       def self.compile(mdl, configuration)
         configuration[:methods].keys.each do |method|
-        # Define the API methods on the module
+          # Define the API methods on the module
           mdl.send(:define_singleton_method, method) do |params|
             # When a method is called, create a new scope
             scope = Jolly::Runtime::Scope.new

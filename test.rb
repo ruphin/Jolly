@@ -55,7 +55,7 @@ module US
   end
 end
 
-config = Jolly::API.create 'US::API::Organisation' do
+Jolly::API.create 'US::API::Organisation' do
   authentication_override do
     puts 'OVERRIDE'
   end
@@ -74,7 +74,7 @@ config = Jolly::API.create 'US::API::Organisation' do
   end
 end
 
-config = Jolly::API.create 'US::API::User' do
+Jolly::API.create 'US::API::User' do
   authentication_override do
     puts 'OVERRIDE'
   end

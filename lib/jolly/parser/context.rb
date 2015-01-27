@@ -4,7 +4,7 @@ module Jolly
       include Jolly::Parser::DSL
 
       def initialize
-        @config = {}
+        @config = { methods: {} }
       end
     end
   end
