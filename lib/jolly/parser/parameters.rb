@@ -5,6 +5,9 @@ module Jolly
   module Parser
     module Parameters
       def param(name, type, properties = {})
+        unless @current
+          raise Jolly::Exceptions::InvalidFormat, 'Cannot define a parameter outside a method description'
+        end
         parameters = @current[:parameters] ||= {}
 
         if parameters.key?(name)
@@ -13,18 +16,20 @@ module Jolly
 
         multiple = properties.delete(:multiple)
         required = properties.delete(:required)
-        definition = { type: type, properties: properties }
+        parameters[name] = { type: type, properties: properties }
 
         if multiple
-          multiple_name = (name.to_s.pluralize).to_sym
+          multiple_name = name.to_s.pluralize
           param(multiple_name, [type], properties)
-          definition[:multiple] = multiple_name
+          parameters[name][:multiple] = multiple_name
+          name = [name, multiple_name]
         end
 
-        parameters[name] = definition
-
-        exactly_one_of name if required
-        at_most_one_of name if multiple
+        if required
+          exactly_one_of(name) if required
+        elsif multiple
+          at_most_one_of(name)
+        end
       end
 
       def at_least_one_of(*params)
@@ -40,14 +45,8 @@ module Jolly
       end
 
       def __parameter_condition(condition, params)
-        parameters = @current[:parameters] ||= {}
         conditions = @config[:conditions] ||= []
-        param_list = params.map do |param|
-          list = [param]
-          list.push parameters[param][:multiple] if parameters[param].key?(:multiple)
-        end.flatten
-
-        conditions.push condition: condition, parameters: param_list
+        conditions.push condition: condition, parameters: params.flatten
       end
     end
   end
